@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ project.title }} | Jamarik Technologies{% endblock %}
+
+{% block meta_description %}{{ project.description|truncatewords:30 }}{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="container page-header-content">
+    <div class="tag">{{ project.get_category_display }}</div>
+    <h1>{{ project.title }}</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="blog-detail">
+
+      {% if project.image %}
+      <div class="blog-detail-image">
+        <img src="{{ project.image.url }}" alt="{{ project.title }}" loading="lazy">
+      </div>
+      {% elif project.category == 'health' %}
+      <div class="blog-detail-image">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80&auto=format&fit=crop" alt="{{ project.title }}" loading="lazy">
+      </div>
+      {% elif project.category == 'fintech' %}
+      <div class="blog-detail-image">
+        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&q=80&auto=format&fit=crop" alt="{{ project.title }}" loading="lazy">
+      </div>
+      {% elif project.category == 'mobile' %}
+      <div class="blog-detail-image">
+        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900&q=80&auto=format&fit=crop" alt="{{ project.title }}" loading="lazy">
+      </div>
+      {% elif project.category == 'ai' %}
+      <div class="blog-detail-image">
+        <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=900&q=80&auto=format&fit=crop" alt="{{ project.title }}" loading="lazy">
+      </div>
+      {% elif project.category == 'data' %}
+      <div class="blog-detail-image">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80&auto=format&fit=crop" alt="{{ project.title }}" loading="lazy">
+      </div>
+      {% elif project.category == 'web' %}
+      <div class="blog-detail-image">
+        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=900&q=80&auto=format&fit=crop" alt="{{ project.title }}" loading="lazy">
+      </div>
+      {% endif %}
+
+      <div class="tech-tags" style="margin-bottom:24px;">
+        {% for tech in project.get_tech_list %}
+          <span class="tech-tag">{{ tech }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="blog-content">
+        {{ project.description|linebreaks }}
+      </div>
+
+      <div class="cta-actions" style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;">
+        {% if project.live_url %}
+          <a href="{{ project.live_url }}" class="btn btn-primary" target="_blank" rel="noopener">View Live ↗</a>
+        {% endif %}
+        {% if project.github_url %}
+          <a href="{{ project.github_url }}" class="btn btn-outline" target="_blank" rel="noopener">GitHub ↗</a>
+        {% endif %}
+        <a href="{% url 'portfolio' %}" class="btn btn-ghost">← Back to Portfolio</a>
+      </div>
+
+    </div>
+
+    {% if related %}
+    <hr style="margin:48px 0;border-color:rgba(255,255,255,0.1);">
+
+    <h3 style="margin-bottom:24px;">Related Projects</h3>
+
+    <div class="portfolio-grid">
+      {% for item in related %}
+      <div class="project-card reveal">
+        <div class="project-body">
+          <div class="project-category">{{ item.get_category_display }}</div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description|truncatewords:22 }}</p>
+          <a href="{% url 'portfolio_detail' item.slug %}" class="btn btn-ghost">View Details <span class="arrow">→</span></a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% endblock %}

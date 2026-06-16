@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page.title }} | Jamarik Technologies{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="container page-header-content">
+    <div class="tag">Page</div>
+    <h1>{{ page.title }}</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="legal-content">
+      {% if page.content %}
+        {{ page.content|linebreaks }}
+      {% endif %}
+
+      {% for section in sections %}
+      <div class="reveal" style="margin-bottom:40px;">
+        <h2>{{ section.title }}</h2>
+        {% if section.subtitle %}
+          <p style="color:var(--slate);margin-bottom:16px;">{{ section.subtitle }}</p>
+        {% endif %}
+        {{ section.content|linebreaks }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

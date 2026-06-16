@@ -18,14 +18,21 @@ DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = [
     "jamarik-technologies.onrender.com",
+    "jamariktechnologies.onrender.com",
     ".onrender.com",
     "localhost",
     "127.0.0.1",
 ]
 
+if os.environ.get("RENDER"):
+    render_host = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+    if render_host and render_host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(render_host)
+
 
 CSRF_TRUSTED_ORIGINS = [
     "https://jamarik-technologies.onrender.com",
+    "https://jamariktechnologies.onrender.com",
     "https://*.onrender.com",
 ]
 
@@ -43,6 +50,20 @@ INSTALLED_APPS = [
     "core",
 ]
 
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "INFO",
+    },
+}
 
 # =========================
 # MIDDLEWARE
@@ -86,25 +107,13 @@ TEMPLATES = [
 # =========================
 # DATABASE (SAFE FIX FOR RENDER + SQLITE)
 # =========================
-DATABASE_URL = os.environ.get("DATABASE_URL")
-
-if DATABASE_URL:
-    # PRODUCTION (Render PostgreSQL)
-    DATABASES = {
-        "default": dj_database_url.parse(
-            DATABASE_URL,
-            conn_max_age=600,
-            ssl_require=True
-        )
-    }
-else:
-    # LOCAL (SQLite fallback)
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
+DATABASES = {
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=not DEBUG,
+    )
+}
 
 
 # =========================
@@ -167,6 +176,9 @@ CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL", "info@jamarik.com")
 # SECURITY HEADERS (PRODUCTION ONLY)
 # =========================
 if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    USE_X_FORWARDED_HOST = True
+
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = "DENY"

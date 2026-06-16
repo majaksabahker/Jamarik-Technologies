@@ -120,6 +120,9 @@ class PortfolioProject(models.Model):
     def __str__(self):
         return self.title
 
+    def get_tech_list(self):
+        return list(self.tech_stack.values_list("name", flat=True))
+
 
 # =========================
 # TEAM
@@ -308,9 +311,6 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return f"{self.client_name} — {self.client_company}"
-
-# models.py
-from django.db import models
 
 class LegalPage(models.Model):
     title = models.CharField(max_length=200)
