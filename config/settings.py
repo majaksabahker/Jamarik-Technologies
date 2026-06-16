@@ -21,10 +21,9 @@ if not SECRET_KEY:
 
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.environ.get(
-    "ALLOWED_HOSTS",
-    "localhost,127.0.0.1,jamarik-technologies.onrender.com"
-).split(",")
+ALLOWED_HOSTS = [
+    "jamarik-technologies.onrender.com",
+]
 
 CSRF_TRUSTED_ORIGINS = os.environ.get(
     "CSRF_TRUSTED_ORIGINS",
@@ -97,9 +96,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # =========================
 # DATABASE (RENDER POSTGRES SUPPORT)
 # =========================
+import dj_database_url
+import os
+
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.getenv("DATABASE_URL")
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True
     )
 }
 
