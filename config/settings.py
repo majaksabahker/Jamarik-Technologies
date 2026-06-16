@@ -1,23 +1,20 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 import dj_database_url
+
+# Load local .env only (Render ignores this automatically)
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # =========================
-# ENVIRONMENT HELPERS
-# =========================
-def get_env(key, default=None):
-    return os.environ.get(key, default)
-
-
-# =========================
 # SECURITY
 # =========================
-SECRET_KEY = get_env("SECRET_KEY", "unsafe-dev-key")
+SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-dev-key")
 
-DEBUG = get_env("DEBUG", "False") == "True"
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = [
     "jamarik-technologies.onrender.com",
@@ -25,6 +22,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
 ]
+
 
 CSRF_TRUSTED_ORIGINS = [
     "https://jamarik-technologies.onrender.com",
@@ -51,7 +49,7 @@ INSTALLED_APPS = [
 # =========================
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # static files for Render
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -62,7 +60,6 @@ MIDDLEWARE = [
 
 
 ROOT_URLCONF = "config.urls"
-
 WSGI_APPLICATION = "config.wsgi.application"
 
 
@@ -87,15 +84,27 @@ TEMPLATES = [
 
 
 # =========================
-# DATABASE (RENDER SAFE)
+# DATABASE (SAFE FIX FOR RENDER + SQLITE)
 # =========================
-DATABASES = {
-    "default": dj_database_url.parse(
-        get_env("DATABASE_URL", "sqlite:///db.sqlite3"),
-        conn_max_age=600,
-        ssl_require=not DEBUG
-    )
-}
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+if DATABASE_URL:
+    # PRODUCTION (Render PostgreSQL)
+    DATABASES = {
+        "default": dj_database_url.parse(
+            DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
+else:
+    # LOCAL (SQLite fallback)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 
 # =========================
@@ -119,7 +128,7 @@ USE_TZ = True
 
 
 # =========================
-# STATIC FILES
+# STATIC FILES (RENDER READY)
 # =========================
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
@@ -145,17 +154,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # EMAIL CONFIG
 # =========================
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = get_env("EMAIL_HOST", "smtp.gmail.com")
-EMAIL_PORT = int(get_env("EMAIL_PORT", 587))
+EMAIL_HOST = os.environ.get("EMAIL_HOST", "smtp.gmail.com")
+EMAIL_PORT = int(os.environ.get("EMAIL_PORT", 587))
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = get_env("EMAIL_HOST_USER", "")
-EMAIL_HOST_PASSWORD = get_env("EMAIL_HOST_PASSWORD", "")
-DEFAULT_FROM_EMAIL = get_env("DEFAULT_FROM_EMAIL", "noreply@jamarik.com")
-CONTACT_EMAIL = get_env("CONTACT_EMAIL", "info@jamarik.com")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "noreply@jamarik.com")
+CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL", "info@jamarik.com")
 
 
 # =========================
-# SECURITY HEADERS (PRODUCTION)
+# SECURITY HEADERS (PRODUCTION ONLY)
 # =========================
 if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
