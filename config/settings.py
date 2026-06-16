@@ -13,11 +13,32 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # =========================
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
+# For production environments, SECRET_KEY must be set
+if not SECRET_KEY:
+    if os.environ.get("ENVIRONMENT") == "production" or os.environ.get("RENDER"):
+        raise ValueError(
+            "CRITICAL: SECRET_KEY environment variable is required for production. "
+            "Generate one using: python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())' "
+            "and set it as an environment variable in your hosting provider."
+        )
+    else:
+        # Use a dummy key for local development only
+        SECRET_KEY = "django-insecure-development-key-only-for-local-testing"
+
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
     "jamariktechnologies.onrender.com",
+    "localhost",
+    "127.0.0.1",
 ]
+
+# For development, allow additional hosts
+if DEBUG:
+    ALLOWED_HOSTS.extend([
+        "*.onrender.com",
+        "*.herokuapp.com",
+    ])
 
 
 # =========================
@@ -145,10 +166,30 @@ CONTACT_EMAIL = os.environ.get('CONTACT_EMAIL', 'info@jamarik.com')
 # SECURITY (PRODUCTION ONLY)
 # =========================
 if not DEBUG:
+    # Core security headers
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = 'DENY'
 
+    # HTTPS and cookies
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    
+    # Additional security
+    SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+    PERMISSIONS_POLICY = {
+        'accelerometer': '()',
+        'ambient-light-sensor': '()',
+        'autoplay': '()',
+        'camera': '()',
+        'geolocation': '()',
+        'gyroscope': '()',
+        'magnetometer': '()',
+        'microphone': '()',
+        'payment': '()',
+        'usb': '()',
+    }
