@@ -1,73 +1,69 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv
 import dj_database_url
-
-load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # =========================
+# ENVIRONMENT HELPERS
+# =========================
+def get_env(key, default=None):
+    return os.environ.get(key, default)
+
+
+# =========================
 # SECURITY
 # =========================
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = get_env("SECRET_KEY", "unsafe-dev-key")
 
-# For production environments, SECRET_KEY must be set
-SECRET_KEY = os.environ.get("SECRET_KEY")
-
-if not SECRET_KEY:
-    raise ValueError("SECRET_KEY environment variable is required for production")
-
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = get_env("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
     "jamarik-technologies.onrender.com",
+    ".onrender.com",
+    "localhost",
+    "127.0.0.1",
 ]
 
-CSRF_TRUSTED_ORIGINS = os.environ.get(
-    "CSRF_TRUSTED_ORIGINS",
-    "https://jamarik-technologies.onrender.com"
-).split(",")
-
-# For development, allow additional hosts
-if DEBUG:
-    ALLOWED_HOSTS.extend([
-        "*.onrender.com",
-        "*.herokuapp.com",
-    ])
+CSRF_TRUSTED_ORIGINS = [
+    "https://jamarik-technologies.onrender.com",
+    "https://*.onrender.com",
+]
 
 
 # =========================
 # APPS
 # =========================
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'core',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "core",
 ]
 
 
 # =========================
-# MIDDLEWARE (WHITE NOISE ADDED)
+# MIDDLEWARE
 # =========================
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # IMPORTANT
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = "config.urls"
+
+WSGI_APPLICATION = "config.wsgi.application"
 
 
 # =========================
@@ -75,35 +71,29 @@ ROOT_URLCONF = 'config.urls'
 # =========================
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
 
-WSGI_APPLICATION = 'config.wsgi.application'
-
-
 # =========================
-# DATABASE (RENDER POSTGRES SUPPORT)
+# DATABASE (RENDER SAFE)
 # =========================
-import dj_database_url
-import os
-
 DATABASES = {
-    "default": dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
+    "default": dj_database_url.parse(
+        get_env("DATABASE_URL", "sqlite:///db.sqlite3"),
         conn_max_age=600,
-        ssl_require=True
+        ssl_require=not DEBUG
     )
 }
 
@@ -112,28 +102,28 @@ DATABASES = {
 # PASSWORD VALIDATION
 # =========================
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 
 # =========================
 # INTERNATIONALIZATION
 # =========================
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'Africa/Kampala'
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "Africa/Kampala"
 USE_I18N = True
 USE_TZ = True
 
 
 # =========================
-# STATIC FILES (PRODUCTION READY)
+# STATIC FILES
 # =========================
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
@@ -141,57 +131,43 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # =========================
 # MEDIA FILES
 # =========================
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 
 # =========================
 # DEFAULT PRIMARY KEY
 # =========================
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # =========================
 # EMAIL CONFIG
 # =========================
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
-EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = get_env("EMAIL_HOST", "smtp.gmail.com")
+EMAIL_PORT = int(get_env("EMAIL_PORT", 587))
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@jamarik.com')
-CONTACT_EMAIL = os.environ.get('CONTACT_EMAIL', 'info@jamarik.com')
+EMAIL_HOST_USER = get_env("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = get_env("EMAIL_HOST_PASSWORD", "")
+DEFAULT_FROM_EMAIL = get_env("DEFAULT_FROM_EMAIL", "noreply@jamarik.com")
+CONTACT_EMAIL = get_env("CONTACT_EMAIL", "info@jamarik.com")
 
 
 # =========================
-# SECURITY (PRODUCTION ONLY)
+# SECURITY HEADERS (PRODUCTION)
 # =========================
 if not DEBUG:
-    # Core security headers
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
-    X_FRAME_OPTIONS = 'DENY'
+    X_FRAME_OPTIONS = "DENY"
 
-    # HTTPS and cookies
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    SECURE_HSTS_SECONDS = 31536000  # 1 year
+
+    SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
-    
-    # Additional security
-    SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
-    PERMISSIONS_POLICY = {
-        'accelerometer': '()',
-        'ambient-light-sensor': '()',
-        'autoplay': '()',
-        'camera': '()',
-        'geolocation': '()',
-        'gyroscope': '()',
-        'magnetometer': '()',
-        'microphone': '()',
-        'payment': '()',
-        'usb': '()',
-    }
+
+    SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
