@@ -14,24 +14,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # For production environments, SECRET_KEY must be set
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
 if not SECRET_KEY:
-    if os.environ.get("ENVIRONMENT") == "production" or os.environ.get("RENDER"):
-        raise ValueError(
-            "CRITICAL: SECRET_KEY environment variable is required for production. "
-            "Generate one using: python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())' "
-            "and set it as an environment variable in your hosting provider."
-        )
-    else:
-        # Use a dummy key for local development only
-        SECRET_KEY = "django-insecure-development-key-only-for-local-testing"
+    raise ValueError("SECRET_KEY environment variable is required for production")
 
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = [
-    "jamariktechnologies.onrender.com",
-    "localhost",
-    "127.0.0.1",
-]
+ALLOWED_HOSTS = os.environ.get(
+    "ALLOWED_HOSTS",
+    "localhost,127.0.0.1,jamarik-technologies.onrender.com"
+).split(",")
+
+CSRF_TRUSTED_ORIGINS = os.environ.get(
+    "CSRF_TRUSTED_ORIGINS",
+    "https://jamarik-technologies.onrender.com"
+).split(",")
 
 # For development, allow additional hosts
 if DEBUG:
