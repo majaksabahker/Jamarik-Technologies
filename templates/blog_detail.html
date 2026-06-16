@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }} | Jamarik Technologies{% endblock %}
+
+{% block content %}
+
+<section class="section">
+  <div class="container">
+
+    <div class="blog-detail">
+
+      {% if post.image %}
+      <div class="blog-detail-image">
+        <img src="{{ post.image.url }}" alt="{{ post.title }}">
+      </div>
+      {% endif %}
+
+      <div class="blog-meta">
+        <span>{{ post.published_at|date:"M d, Y" }}</span>
+        <span>{{ post.author }}</span>
+      </div>
+
+      <h1>{{ post.title }}</h1>
+
+      <p class="blog-excerpt">{{ post.excerpt }}</p>
+
+      <div class="blog-content">
+        {{ post.content|linebreaks }}
+      </div>
+
+    </div>
+
+    {% if related %}
+    <hr>
+
+    <h3>Related Articles</h3>
+
+    <div class="blog-grid">
+      {% for r in related %}
+      <article class="blog-card">
+        <h4>{{ r.title }}</h4>
+        <p>{{ r.excerpt }}</p>
+        <a href="{% url 'blog_detail' r.slug %}">Read more →</a>
+      </article>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% endblock %}

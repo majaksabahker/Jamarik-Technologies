@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title %}Careers Jamarik Technologies{% endblock %}
+
+{% block meta_description %}
+Join Jamarik Technologies Ltd and help build the future of technology in South Sudan, East Africa, and beyond.
+{% endblock %}
+{% block content %}
+<section class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="container page-header-content">
+    <div class="tag">Join the Team</div>
+    <h1>Build Africa's <span class="gradient-text">Digital Future</span></h1>
+    <p>We're a small, high-impact team that moves fast, ships real products, and believes in the power of technology to transform lives.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">Open Roles</div>
+      <h2>Current <span class="gradient-text">Opportunities</span></h2>
+    </div>
+
+    <div class="jobs-list">
+      {% for job in jobs %}
+      <div class="job-card reveal">
+        <div class="job-info">
+          <h3>{{ job.title }}</h3>
+          <div class="job-meta">
+            <span class="job-badge">
+    <i class="fas fa-building"></i>
+    {{ job.department }}
+</span>
+
+<span class="job-badge">
+    <i class="fas fa-location-dot"></i>
+    {{ job.location }}
+</span>
+
+<span class="job-badge">
+    <i class="fas fa-clock"></i>
+    {{ job.get_type_display }}
+</span>
+          </div>
+        </div>
+        <a href="{% url 'contact' %}?subject=Application: {{ job.title }}" class="btn btn-primary" style="flex-shrink:0;">Apply Now →</a>
+      </div>
+      {% empty %}
+      <div style="text-align:center;padding:60px;background:var(--navy-light);border:1px solid var(--border);border-radius:var(--radius-lg);">
+        <div style="font-size:3rem;margin-bottom:16px;color:var(--cyan);"><i class="fas fa-briefcase"></i></div>
+        <h3>No Current Openings</h3>
+        <p style="margin-top:10px;"> While we do not have active vacancies at the moment, we are always interested in connecting with talented professionals who share our vision of building innovative technology solutions across Africa.
+</p>
+        <a href="{% url 'contact' %}?subject=Spontaneous Application" class="btn btn-outline" style="margin-top:24px;">Send a Spontaneous Application →</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Why Work at <span class="gradient-text">Jamarik Technologies Ltd?</span></h2>
+    </div>
+    <div class="services-grid">
+
+    <div class="service-card reveal">
+        <div class="service-icon">
+            <i class="fas fa-rocket"></i>
+        </div>
+        <h3>Real Ownership</h3>
+        <p>
+            Every team member has a voice and a direct impact on our products,
+            clients, and company direction. Your ideas matter, and your work
+            creates measurable value.
+        </p>
+    </div>
+
+    <div class="service-card reveal">
+        <div class="service-icon">
+            <i class="fas fa-globe-africa"></i>
+        </div>
+        <h3>Continental Impact</h3>
+        <p>
+            Build solutions that empower businesses, organizations, and communities
+            across Africa. Your contributions help accelerate digital transformation
+            where it matters most.
+        </p>
+    </div>
+
+    <div class="service-card reveal">
+        <div class="service-icon">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3>Continuous Learning</h3>
+        <p>
+            We foster a culture of growth through mentorship, professional
+            development, certifications, and opportunities to explore emerging
+            technologies including AI and cloud computing.
+        </p>
+    </div>
+
+</div>
+  </div>
+</section>
+{% endblock %}

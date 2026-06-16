@@ -1,0 +1,372 @@
+{% extends 'base.html' %}
+{% block title %}Portfolio Jamarik Technologies{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="container page-header-content">
+    <div class="tag">Our Work</div>
+    <h1>Projects That <span class="gradient-text">Create Impact</span></h1>
+    <p>From health-tech to fintech, from web platforms to AI systems every project we take on changes something real.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="portfolio-filters reveal">
+      <button class="filter-btn {% if not active_category %}active{% endif %}" data-filter="">All</button>
+      {% for value, label in categories %}
+      <button class="filter-btn {% if active_category == value %}active{% endif %}" data-filter="{{ value }}">{{ label }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="portfolio-grid">
+      {% for project in projects %}
+      <div class="project-card reveal" data-category="{{ project.category }}">
+        <div class="project-img">
+
+          {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" loading="lazy">
+          {% elif project.category == 'health' %}
+            <img
+              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80&auto=format&fit=crop"
+              alt="{{ project.title }}"
+              loading="lazy"
+            >
+          {% elif project.category == 'fintech' %}
+            <img
+              src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80&auto=format&fit=crop"
+              alt="{{ project.title }}"
+              loading="lazy"
+            >
+          {% elif project.category == 'mobile' %}
+            <img
+              src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80&auto=format&fit=crop"
+              alt="{{ project.title }}"
+              loading="lazy"
+            >
+          {% elif project.category == 'ai' %}
+            <img
+              src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80&auto=format&fit=crop"
+              alt="{{ project.title }}"
+              loading="lazy"
+            >
+          {% elif project.category == 'data' %}
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80&auto=format&fit=crop"
+              alt="{{ project.title }}"
+              loading="lazy"
+            >
+          {% elif project.category == 'web' %}
+            <img
+              src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&q=80&auto=format&fit=crop"
+              alt="{{ project.title }}"
+              loading="lazy"
+            >
+          {% else %}
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80&auto=format&fit=crop"
+              alt="{{ project.title }}"
+              loading="lazy"
+            >
+          {% endif %}
+
+          <div class="project-overlay">
+            <a href="{% url 'portfolio_detail' project.slug %}">View Details</a>
+            {% if project.live_url %}<a href="{{ project.live_url }}">Live ↗</a>{% endif %}
+          </div>
+        </div>
+
+        <div class="project-body">
+          <div class="project-category">{{ project.get_category_display }}</div>
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description|truncatewords:22 }}</p>
+          <div class="tech-tags">
+            {% for tech in project.get_tech_list %}
+              <span class="tech-tag">{{ tech }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      {% empty %}
+
+      <!-- 1. AI / ML -->
+      <div class="project-card reveal" data-category="ai">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80&auto=format&fit=crop" alt="JAIA Predictive Engine" loading="lazy">
+          <div class="project-overlay"><a href="{% url 'contact' %}">Enquire →</a></div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">AI / ML</div>
+          <h3>JAIA Predictive Engine</h3>
+          <p>Custom machine learning model trained on East African datasets for agricultural yield prediction and weather pattern analysis.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">TensorFlow</span>
+            <span class="tech-tag">Django</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. HealthTech -->
+      <div class="project-card reveal" data-category="health">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80&auto=format&fit=crop" alt="MediCore HMS" loading="lazy">
+          <div class="project-overlay"><a href="{% url 'contact' %}">Enquire →</a></div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">HealthTech</div>
+          <h3>MediCore HMS</h3>
+          <p>Complete hospital management system for East African clinics patient records, pharmacy, appointments and billing in one Flutter app.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">Django</span>
+            <span class="tech-tag">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Fintech -->
+      <div class="project-card reveal" data-category="fintech">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80&auto=format&fit=crop" alt="PesaGuard" loading="lazy">
+          <div class="project-overlay"><a href="{% url 'contact' %}">Enquire →</a></div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">Fintech</div>
+          <h3>PesaGuard</h3>
+          <p>AI-powered mobile money agent platform with on-device counterfeit currency detection for the South Sudan market.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">React Native</span>
+            <span class="tech-tag">TensorFlow Lite</span>
+            <span class="tech-tag">Node.js</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Mobile -->
+      <div class="project-card reveal" data-category="mobile">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80&auto=format&fit=crop" alt="NileTrack Driver App" loading="lazy">
+          <div class="project-overlay"><a href="{% url 'contact' %}">Enquire →</a></div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">Mobile</div>
+          <h3>NileTrack Driver App</h3>
+          <p>GPS fleet tracking and cargo management mobile app for South Sudan's logistics sector with offline-first architecture.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">SQLite</span>
+            <span class="tech-tag">Google Maps API</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Data -->
+      <div class="project-card reveal" data-category="data">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80&auto=format&fit=crop" alt="FloodWatch SS Dashboard" loading="lazy">
+          <div class="project-overlay"><a href="{% url 'contact' %}">Enquire →</a></div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">Data</div>
+          <h3>FloodWatch SS Dashboard</h3>
+          <p>Real-time satellite and IoT sensor data dashboard powering South Sudan's flood early warning and SMS alert system.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Grafana</span>
+            <span class="tech-tag">IoT</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Web -->
+      <div class="project-card reveal" data-category="web">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&q=80&auto=format&fit=crop" alt="SkyWing Aviation Portal" loading="lazy">
+          <div class="project-overlay"><a href="{% url 'contact' %}">Enquire →</a></div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">Web</div>
+          <h3>SkyWing Aviation Portal</h3>
+          <p>Premium multi-page aviation services website for a Juba-based carrier glassmorphism UI, real-time flight info and booking flows.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Django</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. AI — Voice Automation -->
+      <div class="project-card reveal" data-category="ai">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?w=600&q=80&auto=format&fit=crop" alt="AI Voice Automation" loading="lazy">
+          <div class="project-overlay"><a href="{% url 'contact' %}">Enquire →</a></div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">AI / ML</div>
+          <h3>Clinic Voice AI Agent</h3>
+          <p>AI-powered voice automation for clinics handling appointment booking, patient follow-ups and reminders via natural language calls.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Vapi</span>
+            <span class="tech-tag">n8n</span>
+            <span class="tech-tag">OpenAI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. HealthTech — Telemedicine -->
+      <div class="project-card reveal" data-category="health">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=80&auto=format&fit=crop" alt="Telemedicine Platform" loading="lazy">
+          <div class="project-overlay"><a href="{% url 'contact' %}">Enquire →</a></div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">HealthTech</div>
+          <h3>TeleHealth SS</h3>
+          <p>Remote consultation platform connecting rural South Sudan patients with doctors via low-bandwidth video and offline SMS fallback.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">WebRTC</span>
+            <span class="tech-tag">FastAPI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Fintech — Trading Bot -->
+      <div class="project-card reveal" data-category="fintech">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80&auto=format&fit=crop" alt="Algorithmic Trading Bot" loading="lazy">
+          <div class="project-overlay"><a href="{% url 'contact' %}">Enquire →</a></div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">Fintech</div>
+          <h3>AlgoTrade MT5 Bot</h3>
+          <p>Algorithmic Forex trading bot targeting EURUSD, GBPUSD, and XAUUSD on the M1 timeframe with Python signal engine and MQL5 EA.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">MQL5</span>
+            <span class="tech-tag">MetaTrader 5</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Web — E-commerce POS -->
+      <div class="project-card reveal" data-category="web">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80&auto=format&fit=crop" alt="Jamarik POS System" loading="lazy">
+          <div class="project-overlay"><a href="{% url 'contact' %}">Enquire →</a></div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">Web</div>
+          <h3>Jamarik POS System</h3>
+          <p>Offline-first point-of-sale system built for South Sudan retailers React frontend, Django backend, IndexedDB sync and SSP currency support.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">Django</span>
+            <span class="tech-tag">IndexedDB</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. Agriculture / Data -->
+      <div class="project-card reveal" data-category="data">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&q=80&auto=format&fit=crop" alt="Smart Farming IoT" loading="lazy">
+          <div class="project-overlay"><a href="{% url 'contact' %}">Enquire →</a></div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">Data</div>
+          <h3>AgroSense SS</h3>
+          <p>IoT-powered smart farming dashboard providing soil moisture, rainfall, and crop health monitoring for smallholder farmers across South Sudan.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">IoT</span>
+            <span class="tech-tag">React.js</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12. EdTech / Mobile -->
+      <div class="project-card reveal" data-category="mobile">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80&auto=format&fit=crop" alt="EdTech Learning App" loading="lazy">
+          <div class="project-overlay"><a href="{% url 'contact' %}">Enquire →</a></div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">Mobile</div>
+          <h3>LearnSS Student App</h3>
+          <p>Offline-capable mobile learning app delivering curriculum content, quizzes, and teacher feedback to students in low-connectivity South Sudan schools.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">Dart</span>
+            <span class="tech-tag">SQLite</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13. AI — NGO Intelligence -->
+      <div class="project-card reveal" data-category="ai">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80&auto=format&fit=crop" alt="NGO Operations Dashboard" loading="lazy">
+          <div class="project-overlay"><a href="{% url 'contact' %}">Enquire →</a></div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">AI / ML</div>
+          <h3>NGO Ops Intelligence Dashboard</h3>
+          <p>Automated data intelligence dashboard built for South Sudan NGOs aggregates field reports, budget tracking, and beneficiary analytics in real time.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">openpyxl</span>
+            <span class="tech-tag">FastAPI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 14. Web — School Site -->
+      <div class="project-card reveal" data-category="web">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80&auto=format&fit=crop" alt="School Website" loading="lazy">
+          <div class="project-overlay"><a href="{% url 'contact' %}">Enquire →</a></div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">Web</div>
+          <h3>St. Lawrence Academy Website</h3>
+          <p>Modern school website for St. Lawrence Academy featuring admissions portal, news feed, and staff directory built on React, Vite, and Django.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">Vite</span>
+            <span class="tech-tag">Django</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 15. Computer Vision -->
+      <div class="project-card reveal" data-category="ai">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt="Vehicle Speed Detection" loading="lazy">
+          <div class="project-overlay"><a href="{% url 'contact' %}">Enquire →</a></div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">AI / ML</div>
+          <h3>Vehicle Speed Detection System</h3>
+          <p>Real-time vehicle speed detection using YOLOv8, ByteTrack, and OpenCV BEV homography for traffic enforcement in urban East African roads.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">YOLOv8</span>
+            <span class="tech-tag">OpenCV</span>
+            <span class="tech-tag">Python</span>
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

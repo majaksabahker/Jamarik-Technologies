@@ -1,0 +1,497 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Jamarik Technologies AI-Powered Software for Africa{% endblock %}
+
+{% block meta_description %}
+Jamarik Technologies Ltd builds AI-powered software, web applications, mobile apps, and digital solutions for businesses, NGOs, and governments across Africa.
+{% endblock %}
+
+{% block content %}
+
+<!--Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">South Sudan's First AI Company</div>
+      <h1 class="hero-title">
+        Building the<br>
+        <span class="gradient-text">Intelligent Future</span><br>
+        of <span id="dynamic-region">South Sudan</span>
+    </h1>
+      <p class="hero-subtitle">
+        We design and deliver AI-powered software, mobile applications, and digital systems that solve real problems for businesses, NGOs, and governments across East Africa.
+      </p>
+      <div class="hero-actions">
+        <a href="{% url 'solutions' %}" class="btn btn-primary">Explore Solutions ↗</a>
+        <a href="{% url 'portfolio' %}" class="btn btn-outline">View Our Work</a>
+      </div>
+      <div class="hero-stats">
+        {% if stats %}
+          {% for stat in stats %}
+          <div>
+            <div class="hero-stat-value"><span>{{ stat.value }}</span>{{ stat.suffix }}</div>
+            <div class="hero-stat-label">{{ stat.label }}</div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div>
+            <div class="hero-stat-value"><span>15</span>+</div>
+            <div class="hero-stat-label">Projects Delivered</div>
+          </div>
+          <div>
+            <div class="hero-stat-value"><span>3</span></div>
+            <div class="hero-stat-label">Countries Active</div>
+          </div>
+          <div>
+            <div class="hero-stat-value"><span>100</span>%</div>
+            <div class="hero-stat-label">Client Satisfaction</div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!--Hero Visual Image Slider-->
+    <div class="hero-visual">
+
+      <!-- Slider wrapper -->
+      <div class="hero-slider">
+        <div class="hero-slider-track" id="heroSliderTrack">
+
+          <a href="{% url 'services' %}" class="hero-slide">
+            <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=700&q=85&auto=format&fit=crop" alt="AI & Machine Learning">
+            <div class="hero-slide-label"><span>AI & ML</span> Building intelligent models for East Africa</div>
+          </a>
+
+          <a href="{% url 'services' %}" class="hero-slide">
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=700&q=85&auto=format&fit=crop" alt="Mobile App Development">
+            <div class="hero-slide-label"><span>Mobile Apps</span> Flutter apps built for low-bandwidth Africa</div>
+          </a>
+
+          <a href="{% url 'solutions' %}" class="hero-slide">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=700&q=85&auto=format&fit=crop" alt="Healthcare Technology">
+            <div class="hero-slide-label"><span>HealthTech</span> Hospital systems for East African clinics</div>
+          </a>
+
+          <a href="{% url 'services' %}" class="hero-slide">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=85&auto=format&fit=crop" alt="Data Analytics">
+            <div class="hero-slide-label"><span>Data Analytics</span> Turning raw data into actionable insights</div>
+          </a>
+
+          <a href="{% url 'portfolio' %}" class="hero-slide">
+            <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=700&q=85&auto=format&fit=crop" alt="Web Development">
+            <div class="hero-slide-label"><span>Web Development</span> Full-stack platforms built to scale</div>
+          </a>
+
+          <a href="{% url 'solutions' %}" class="hero-slide">
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=700&q=85&auto=format&fit=crop" alt="Logistics & Fleet">
+            <div class="hero-slide-label"><span>Logistics</span> GPS fleet management across South Sudan</div>
+          </a>
+
+          <a href="{% url 'services' %}" class="hero-slide">
+            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=700&q=85&auto=format&fit=crop" alt="Cloud & DevOps">
+            <div class="hero-slide-label"><span>Cloud & DevOps</span> Reliable infrastructure for critical systems</div>
+          </a>
+
+          <a href="{% url 'solutions' %}" class="hero-slide">
+            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=700&q=85&auto=format&fit=crop" alt="Fintech & Mobile Money">
+            <div class="hero-slide-label"><span>Fintech</span> Mobile money security for SSP & UGX markets</div>
+          </a>
+
+          <a href="{% url 'about' %}" class="hero-slide">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&q=85&auto=format&fit=crop" alt="Our Team">
+            <div class="hero-slide-label"><span>Our Team</span> Built in Africa, by Africans, for Africa</div>
+          </a>
+
+          <a href="{% url 'solutions' %}" class="hero-slide">
+            <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=700&q=85&auto=format&fit=crop" alt="Early Warning Systems">
+            <div class="hero-slide-label"><span>Early Warning</span> Satellite-powered flood alerts for South Sudan</div>
+          </a>
+
+        </div><!-- /hero-slider-track -->
+
+        <!-- Dot navigation -->
+        <div class="hero-slider-dots" id="heroSliderDots">
+          <button class="hero-dot active" data-index="0" aria-label="Slide 1"></button>
+          <button class="hero-dot" data-index="1" aria-label="Slide 2"></button>
+          <button class="hero-dot" data-index="2" aria-label="Slide 3"></button>
+          <button class="hero-dot" data-index="3" aria-label="Slide 4"></button>
+          <button class="hero-dot" data-index="4" aria-label="Slide 5"></button>
+          <button class="hero-dot" data-index="5" aria-label="Slide 6"></button>
+          <button class="hero-dot" data-index="6" aria-label="Slide 7"></button>
+          <button class="hero-dot" data-index="7" aria-label="Slide 8"></button>
+          <button class="hero-dot" data-index="8" aria-label="Slide 9"></button>
+          <button class="hero-dot" data-index="9" aria-label="Slide 10"></button>
+        </div>
+
+        <!-- Arrow controls -->
+        <button class="hero-slider-arrow hero-slider-arrow--prev" id="heroPrev" aria-label="Previous slide">&#8592;</button>
+        <button class="hero-slider-arrow hero-slider-arrow--next" id="heroNext" aria-label="Next slide">&#8594;</button>
+
+      </div><!-- /hero-slider -->
+
+    </div><!-- /hero-visual -->
+  </div>
+</section>
+
+<!--Stats-->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-value" data-count="15" data-suffix="+">15+</div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-value" data-count="3">3</div>
+        <div class="stat-label">Countries Active</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-value" data-count="24" data-suffix="/7">24/7</div>
+        <div class="stat-label">Support</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-value" data-count="100" data-suffix="%">100%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Services-->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">What We Build</div>
+      <h2>Services That Drive <span class="gradient-text">Real Impact</span></h2>
+      <p>From AI voice automation to full-scale enterprise platforms we deliver end-to-end digital solutions built for the African market.</p>
+    </div>
+    <div class="services-grid">
+      {% if services %}
+        {% for service in services %}
+        <div class="service-card reveal">
+          <div class="service-icon">
+            {% if service.icon == 'brain' %}
+              <i class="fas fa-brain"></i>
+            {% elif service.icon == 'globe' %}
+              <i class="fas fa-code"></i>
+            {% elif service.icon == 'smartphone' %}
+              <i class="fas fa-mobile-screen-button"></i>
+            {% elif service.icon == 'cloud' %}
+              <i class="fas fa-cloud"></i>
+            {% elif service.icon == 'shield' %}
+              <i class="fas fa-shield-halved"></i>
+            {% elif service.icon == 'bar-chart' %}
+              <i class="fas fa-chart-line"></i>
+            {% else %}
+              <i class="fas fa-bolt"></i>
+            {% endif %}
+          </div>
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.short_description }}</p>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>AI & Machine Learning</h3>
+          <p>Custom AI models, voice automation, intelligent agents and machine learning systems tailored to East African data and use cases.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3>Web Development</h3>
+          <p>Full-stack web applications built with React, Django, and PostgreSQL. Fast, secure and designed for low-bandwidth environments.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <i class="fas fa-mobile-screen-button"></i>
+          </div>
+          <h3>Mobile Applications</h3>
+          <p>Cross-platform mobile apps in Flutter that work on Android and iOS with offline support and mobile money integration.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <i class="fas fa-cloud"></i>
+          </div>
+          <h3>Cloud & DevOps</h3>
+          <p>Cloud architecture, deployment pipelines, and infrastructure management on Railway, AWS and Google Cloud.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Data Analytics</h3>
+          <p>Business intelligence dashboards, data pipelines, and reporting systems that turn raw data into actionable insights.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <i class="fas fa-shield-halved"></i>
+          </div>
+          <h3>Cybersecurity</h3>
+          <p>Security audits, network hardening, and secure system design to protect your data and users from threats.</p>
+        </div>
+      {% endif %}
+</div>
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <a href="{% url 'services' %}" class="btn btn-outline">View All Services →</a>
+    </div>
+  </div>
+</section>
+
+<!--Solutions-->
+{% if solutions %}
+<section class="section section--dark">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">Products</div>
+      <h2>Our <span class="gradient-text">Flagship Solutions</span></h2>
+      <p>Purpose-built platforms designed for the unique challenges of East African markets.</p>
+    </div>
+    <div class="solutions-grid">
+      {% for sol in solutions %}
+      <div class="solution-card reveal">
+        <div class="solution-card-img">
+          {% if sol.image %}<img src="{{ sol.image.url }}" alt="{{ sol.title }}" loading="lazy">{% else %}🚀{% endif %}
+        </div>
+        <div class="solution-card-body">
+          <h3>{{ sol.title }}</h3>
+          <p>{{ sol.tagline }}</p>
+          <a href="{% url 'solutions' %}" class="btn btn-ghost">Learn more <span class="arrow">→</span></a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!--Portfolio-->
+{% if projects %}
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">Portfolio</div>
+      <h2>Work That <span class="gradient-text">Speaks for Itself</span></h2>
+      <p>A selection of projects where technology met purpose and created lasting impact.</p>
+    </div>
+    <div class="portfolio-grid">
+      {% for project in projects %}
+      <div class="project-card reveal" data-category="{{ project.category }}">
+        <div class="project-img">
+          {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" loading="lazy">
+          {% elif project.category == 'health' %}
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80&auto=format&fit=crop" alt="{{ project.title }}" loading="lazy">
+          {% elif project.category == 'fintech' %}
+            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80&auto=format&fit=crop" alt="{{ project.title }}" loading="lazy">
+          {% elif project.category == 'mobile' %}
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80&auto=format&fit=crop" alt="{{ project.title }}" loading="lazy">
+          {% elif project.category == 'ai' %}
+            <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80&auto=format&fit=crop" alt="{{ project.title }}" loading="lazy">
+          {% elif project.category == 'data' %}
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80&auto=format&fit=crop" alt="{{ project.title }}" loading="lazy">
+          {% elif project.category == 'web' %}
+            <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&q=80&auto=format&fit=crop" alt="{{ project.title }}" loading="lazy">
+          {% else %}
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80&auto=format&fit=crop" alt="{{ project.title }}" loading="lazy">
+          {% endif %}
+          <div class="project-overlay">
+            <a href="{% url 'portfolio_detail' project.slug %}">View Details →</a>
+            {% if project.live_url %}<a href="{{ project.live_url }}">Live ↗</a>{% endif %}
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-category">{{ project.get_category_display }}</div>
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description|truncatewords:20 }}</p>
+          <div class="tech-tags">
+            {% for tech in project.get_tech_list %}
+              <span class="tech-tag">{{ tech }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <a href="{% url 'portfolio' %}" class="btn btn-outline">View All Projects →</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!--Testimonials-->
+{% if testimonials %}
+<section class="section section--dark">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">Testimonials</div>
+      <h2>What Our <span class="gradient-text">Clients Say</span></h2>
+    </div>
+    <div class="testimonials-grid">
+      {% for t in testimonials %}
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">{% for i in "12345" %}⭐{% endfor %}</div>
+        <p class="testimonial-quote">"{{ t.testimonial }}"</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">
+            {% if t.image %}<img src="{{ t.image.url }}" alt="{{ t.client_name }}">
+            {% else %}{{ t.client_name|first }}{% endif %}
+          </div>
+          <div>
+            <div class="testimonial-name">{{ t.client_name }}</div>
+            <div class="testimonial-role">{{ t.client_role }}, {{ t.client_company }}</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!--Blog-->
+{% if blog_posts %}
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">Insights</div>
+      <h2>From Our <span class="gradient-text">Blog</span></h2>
+      <p>Perspectives on AI, technology, and building software that matters in Africa.</p>
+    </div>
+    <div class="blog-grid">
+      {% for post in blog_posts %}
+      <article class="blog-card reveal">
+        {% if post.image %}
+        <div class="blog-img"><img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy"></div>
+        {% endif %}
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span>{{ post.published_at|date:"M d, Y" }}</span>
+            <span>{{ post.author }}</span>
+          </div>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.excerpt }}</p>
+          <a href="{% url 'blog_detail' post.slug %}" class="btn btn-ghost">Read more <span class="arrow">→</span></a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!--CTA-->
+<section class="cta-section section--dark">
+  <div class="container">
+    <div class="tag reveal">Ready to Build?</div>
+    <h2 class="reveal">Start Your <span class="gradient-text">Digital Transformation</span></h2>
+    <p class="reveal">Whether you're a startup, NGO or enterprise we'll design a solution that fits your context and scales with your ambitions.</p>
+    <div class="cta-actions reveal">
+      <a href="{% url 'contact' %}" class="btn btn-primary">Book a Free Consultation ↗</a>
+      <a href="{% url 'portfolio' %}" class="btn btn-outline">See Our Work</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script>
+(function () {
+  const track   = document.getElementById('heroSliderTrack');
+  const dots    = document.querySelectorAll('.hero-dot');
+  const prevBtn = document.getElementById('heroPrev');
+  const nextBtn = document.getElementById('heroNext');
+  const total   = 10;
+  let current   = 0;
+  let timer     = null;
+
+  function goTo(index) {
+    current = (index + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function startAuto() {
+    timer = setInterval(next, 3500);
+  }
+
+  function stopAuto() {
+    clearInterval(timer);
+  }
+
+  // Dot clicks
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      stopAuto();
+      goTo(parseInt(dot.dataset.index));
+      startAuto();
+    });
+  });
+
+  const regions = [
+    "South Sudan",
+    "East Africa",
+    "Africa and Beyond"
+];
+
+let currentRegion = 0;
+const regionElement = document.getElementById("dynamic-region");
+
+setInterval(() => {
+    currentRegion = (currentRegion + 1) % regions.length;
+
+    regionElement.style.opacity = "0";
+
+    setTimeout(() => {
+        regionElement.textContent = regions[currentRegion];
+        regionElement.style.opacity = "1";
+    }, 300);
+
+}, 3000);
+
+  // Arrow clicks
+  nextBtn.addEventListener('click', () => { stopAuto(); next(); startAuto(); });
+  prevBtn.addEventListener('click', () => { stopAuto(); prev(); startAuto(); });
+
+  // Pause on hover
+  track.closest('.hero-slider').addEventListener('mouseenter', stopAuto);
+  track.closest('.hero-slider').addEventListener('mouseleave', startAuto);
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; stopAuto(); }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+    startAuto();
+  });
+
+  // Keyboard accessibility
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') { stopAuto(); next(); startAuto(); }
+    if (e.key === 'ArrowLeft')  { stopAuto(); prev(); startAuto(); }
+  });
+
+  startAuto();
+})();
+</script>
+{% endblock %}

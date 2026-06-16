@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block title %}Solutions Jamarik Technologies{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="container page-header-content">
+    <div class="tag">Our Products</div>
+    <h1>Flagship <span class="gradient-text">Solutions</span></h1>
+    <p>Purpose-built platforms for healthcare, logistics, finance and government across East Africa.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    {% if solutions %}
+      {% for sol in solutions %}
+      <div class="solution-row {% if forloop.counter|divisibleby:2 %}solution-row--reverse{% endif %} reveal">
+        <div class="solution-row-img">
+          <div class="solution-img-box">
+            {% if sol.image %}
+              <img src="{{ sol.image.url }}" alt="{{ sol.title }}">
+            {% else %}
+              🚀
+            {% endif %}
+          </div>
+        </div>
+        <div class="solution-row-body">
+          <div class="tag">{{ sol.title }}</div>
+          <h2>{{ sol.tagline }}</h2>
+          <p>{{ sol.description }}</p>
+          <div style="margin-top:32px;">
+            <a href="{% url 'contact' %}" class="btn btn-primary">Request a Demo →</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    {% else %}
+
+      <!-- MediCore -->
+      <div class="solution-row reveal">
+        <div class="solution-row-img">
+          <div class="solution-img-box">
+            <img
+              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&auto=format&fit=crop&q=80"
+              alt="MediCore — Hospital Management System"
+              loading="lazy"
+            >
+          </div>
+        </div>
+        <div class="solution-row-body">
+          <div class="tag">MediCore</div>
+          <h2>Hospital Management <span class="gradient-text">Reimagined</span></h2>
+          <p>A complete hospital management system built for East African clinics. Patient records, appointment scheduling, pharmacy management, and billing all in one Flutter mobile app with a Django backend.</p>
+          <div style="margin-top:32px;">
+            <a href="{% url 'contact' %}" class="btn btn-primary">Request a Demo →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FloodWatch SS -->
+      <div class="solution-row solution-row--reverse reveal">
+        <div class="solution-row-img">
+          <div class="solution-img-box">
+            <img
+              src="https://images.unsplash.com/photo-1547683905-f686c993aae5?w=800&auto=format&fit=crop&q=80"
+              alt="FloodWatch SS — Flood Early Warning System"
+              loading="lazy"
+            >
+          </div>
+        </div>
+        <div class="solution-row-body">
+          <div class="tag">FloodWatch SS</div>
+          <h2>Flood Early Warning for <span class="gradient-text">South Sudan</span></h2>
+          <p>Real-time flood prediction and early warning system using satellite data, IoT sensors and machine learning. Sends SMS alerts to communities before disaster strikes.</p>
+          <div style="margin-top:32px;">
+            <a href="{% url 'contact' %}" class="btn btn-primary">Learn More →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NileTrack -->
+      <div class="solution-row reveal">
+        <div class="solution-row-img">
+          <div class="solution-img-box">
+            <img
+              src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&auto=format&fit=crop&q=80"
+              alt="NileTrack — Fleet and Cargo Intelligence"
+              loading="lazy"
+            >
+          </div>
+        </div>
+        <div class="solution-row-body">
+          <div class="tag">NileTrack</div>
+          <h2>Fleet & Cargo <span class="gradient-text">Intelligence</span></h2>
+          <p>GPS-based fleet management and cargo tracking system designed for South Sudan's logistics industry. Real-time vehicle tracking, route optimization, and driver performance analytics.</p>
+          <div style="margin-top:32px;">
+            <a href="{% url 'contact' %}" class="btn btn-primary">Request a Demo →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PesaGuard -->
+      <div class="solution-row solution-row--reverse reveal">
+        <div class="solution-row-img">
+          <div class="solution-img-box">
+            <img
+              src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format&fit=crop&q=80"
+              alt="PesaGuard — Mobile Money Security Layer"
+              loading="lazy"
+            >
+          </div>
+        </div>
+        <div class="solution-row-body">
+          <div class="tag">PesaGuard</div>
+          <h2>Mobile Money <span class="gradient-text">Security Layer</span></h2>
+          <p>AI-powered counterfeit currency detection and mobile money agent management platform for South Sudan. On-device inference, offline-first architecture, and real-time transaction monitoring.</p>
+          <div style="margin-top:32px;">
+            <a href="{% url 'contact' %}" class="btn btn-primary">Request a Demo →</a>
+          </div>
+        </div>
+      </div>
+
+    {% endif %}
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section section--dark">
+  <div class="container">
+    <div class="tag reveal">Interested?</div>
+    <h2 class="reveal">Ready to Deploy a <span class="gradient-text">Jamarik Solution?</span></h2>
+    <p class="reveal">Whether you need a pilot program or a full rollout we'll scope it, build it and support it.</p>
+    <div class="cta-actions reveal">
+      <a href="{% url 'contact' %}" class="btn btn-primary">Book a Free Demo →</a>
+      <a href="{% url 'portfolio' %}" class="btn btn-outline">See Our Work</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

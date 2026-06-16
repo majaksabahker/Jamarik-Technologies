@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}Cookie Policy Jamarik Technologies{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="container page-header-content">
+    <div class="tag">Legal</div>
+    <h1>Cookie <span class="gradient-text">Policy</span></h1>
+  </div>
+</section>
+
+<div class="container">
+  <div class="legal-content">
+    <p class="legal-last-updated">Last updated: January 1, 2025</p>
+
+    <p>This Cookie Policy explains what cookies are, how Jamarik Technologies Ltd uses them on our website, and how you can control your cookie preferences.</p>
+
+    <h2>1. What Are Cookies?</h2>
+    <p>Cookies are small text files stored on your device (computer, phone, or tablet) when you visit a website. They help websites remember your preferences, understand how you use the site, and improve your experience.</p>
+
+    <h2>2. Cookies We Use</h2>
+
+    <h2>2.1 Strictly Necessary Cookies</h2>
+    <p>These cookies are essential for the website to function. They cannot be disabled.</p>
+    <ul>
+      <li><strong>csrftoken:</strong> Django's Cross-Site Request Forgery protection token. Expires with the session.</li>
+      <li><strong>sessionid:</strong> Maintains your session state. Expires when you close your browser.</li>
+      <li><strong>jmk_cookie_consent:</strong> Remembers your cookie consent choice. Expires after 1 year.</li>
+    </ul>
+
+    <h2>2.2 Analytics Cookies (with consent)</h2>
+    <p>These help us understand how visitors interact with our website so we can improve it.</p>
+    <ul>
+      <li><strong>_ga / _gid:</strong> Google Analytics cookies tracking page views and user behaviour. Expire after 2 years / 24 hours.</li>
+    </ul>
+
+    <h2>2.3 Functional Cookies (with consent)</h2>
+    <p>These cookies enable enhanced functionality such as remembering your preferences.</p>
+    <ul>
+      <li><strong>jmk_prefs:</strong> Stores UI preferences. Expires after 6 months.</li>
+    </ul>
+
+    <h2>3. Third-Party Cookies</h2>
+    <p>Some pages may embed third-party content (e.g., maps, videos) that may set their own cookies. We do not control these cookies. Refer to the respective third parties' privacy policies for details.</p>
+
+    <h2>4. How to Manage Cookies</h2>
+    <p>You can control cookies in several ways:</p>
+    <ul>
+      <li><strong>Cookie banner:</strong> When you first visit our site, use the banner to accept or decline non-essential cookies.</li>
+      <li><strong>Browser settings:</strong> Most browsers allow you to block or delete cookies in Settings → Privacy. Note that blocking all cookies may affect website functionality.</li>
+      <li><strong>Opt-out tools:</strong> Google Analytics opt-out is available at <a href="https://tools.google.com/dlpage/gaoptout" style="color:var(--cyan);" target="_blank" rel="noopener">tools.google.com/dlpage/gaoptout</a>.</li>
+    </ul>
+
+    <h2>5. Do Not Track</h2>
+    <p>Our website currently does not respond to "Do Not Track" signals from browsers, though we honour your explicit cookie consent choices made via our banner.</p>
+
+    <h2>6. Updates to This Policy</h2>
+    <p>We may update this Cookie Policy as we add or remove cookies from our website. Changes will be reflected by updating the "Last updated" date above.</p>
+
+    <h2>7. Contact</h2>
+    <p>For questions about our use of cookies:<br>
+    <strong>Email:</strong> privacy@jamariktchnologies.com</p>
+  </div>
+</div>
+{% endblock %}

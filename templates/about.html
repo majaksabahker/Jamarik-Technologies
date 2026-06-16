@@ -1,0 +1,487 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About Us Jamarik Technologies Ltd{% endblock %}
+
+{% block meta_description %}
+Learn about Jamarik Technologies Ltd, a South Sudan-based AI and software company building intelligent digital solutions for Africa.
+{% endblock %}
+
+{% block content %}
+
+<!--Page Header-->
+<section class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="container page-header-content">
+    <div class="tag reveal">Our Story</div>
+    <h1 class="reveal">Built in Africa,<br><span class="gradient-text">for Africa</span></h1>
+    <p class="reveal">Jamarik Technologies was founded on a simple belief: that world-class technology should not be imported it should be built here, by us, for our people.</p>
+  </div>
+</section>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!--Mission / Vision-->
+<section class="section">
+  <div class="container">
+    <div class="about-mission-grid reveal">
+      <div>
+        <div class="tag">Mission</div>
+        <h2>Why We <span class="gradient-text">Exist</span></h2>
+        <p style="margin-top:16px;">We exist to close the technology gap between East Africa and the rest of the world one intelligent system at a time. From Juba to Kampala, from clinics to government offices, we build software that works in low-bandwidth environments, supports local languages, and integrates with mobile money.</p>
+        <p style="margin-top:16px;">Our work is not theoretical. Every product we ship solves a documented problem faced by real people in our communities.</p>
+      </div>
+      <div style="display:grid;gap:20px;">
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-bullseye"></i>
+            </div>
+            <h4>Vision</h4>
+            <p>To become South Sudan's leading software and artificial intelligence company, empowering organizations across East Africa and beyond with innovative digital solutions that drive growth, operational efficiency and sustainable digital transformation.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+            <h4>Mission</h4>
+            <p>To empower businesses, institutions and communities through innovative software, artificial intelligence and digital solutions that enhance efficiency, accelerate growth, and drive sustainable transformation, while contributing to the digital future of South Sudan, East Africa and beyond.</p>
+        </div>
+        <div class="service-card">
+
+  <div class="section-header">
+    <h2>Our Core Values</h2>
+    <p>
+      At Jamarik Technologies Ltd, our values guide every decision we make and every solution we deliver.
+      We are driven by innovation, committed to excellence, grounded in integrity, focused on customer success
+      and inspired to create meaningful impact through technology.
+    </p>
+  </div>
+
+  <div class="values-grid">
+
+    <div class="value-card">
+      <div class="value-icon"></div>
+      <h4>Innovation</h4>
+      <p>We embrace emerging technologies, creative thinking, and continuous improvement to develop intelligent solutions that solve real-world challenges and drive digital transformation.</p>
+    </div>
+
+    <div class="value-card">
+      <div class="value-icon"></div>
+      <h4>Excellence</h4>
+      <p>We are committed to delivering exceptional quality, outstanding performance, and superior value in every project, service, and client engagement.</p>
+    </div>
+
+    <div class="value-card">
+      <div class="value-icon"></div>
+      <h4>Integrity</h4>
+      <p>We uphold the highest standards of honesty, transparency, accountability, and professionalism, building trust with our clients, partners, and communities.</p>
+    </div>
+
+    <div class="value-card">
+      <div class="value-icon"></div>
+      <h4>Customer Success</h4>
+      <p>Our clients are at the heart of everything we do. We create solutions that help organizations achieve their goals, maximize efficiency, and accelerate growth.</p>
+    </div>
+
+    <div class="value-card">
+      <div class="value-icon"></div>
+      <h4>Reliability</h4>
+      <p>We deliver secure, scalable, and dependable technology solutions that organizations can trust to support their operations and future growth.</p>
+    </div>
+
+    <div class="value-card">
+      <div class="value-icon"></div>
+      <h4>Impact</h4>
+      <p>We leverage technology to create meaningful change, empower communities, and contribute to the sustainable digital transformation of South Sudan, East Africa, and beyond.</p>
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Stats-->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      {% for stat in stats %}
+      <div class="stat-item reveal">
+        <div class="stat-value" data-count="{{ stat.value }}" data-suffix="{{ stat.suffix }}">{{ stat.value }}{{ stat.suffix }}</div>
+        <div class="stat-label">{{ stat.label }}</div>
+      </div>
+      {% empty %}
+      <div class="stat-item reveal"><div class="stat-value" data-count="15" data-suffix="+">15+</div><div class="stat-label">Projects</div></div>
+      <div class="stat-item reveal"><div class="stat-value" data-count="3">3</div><div class="stat-label">Countries</div></div>
+      <div class="stat-item reveal"><div class="stat-value" data-count="100" data-suffix="%">100%</div><div class="stat-label">Satisfaction</div></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<div class="section-header">
+    <div class="tag">Why Choose Jamarik Technologies Ltd</div>
+    <h2>Building Technology That Works in Africa</h2>
+</div>
+
+<div class="about-mission-grid">
+
+    <div class="service-card reveal">
+        <div class="service-icon">
+            <i class="fas fa-earth-africa"></i>
+        </div>
+        <h4>Local Expertise</h4>
+        <p>Built by African engineers who understand local challenges and opportunities.</p>
+    </div>
+
+    <div class="service-card reveal">
+        <div class="service-icon">
+            <i class="fas fa-brain"></i>
+        </div>
+        <h4>AI-Driven Innovation</h4>
+        <p>We leverage artificial intelligence to automate processes and unlock new possibilities.</p>
+    </div>
+
+    <div class="service-card reveal">
+        <div class="service-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <h4>Scalable Solutions</h4>
+        <p>From startups to government institutions, our systems are built to grow with your organization.</p>
+    </div>
+
+    <div class="service-card reveal">
+        <div class="service-icon">
+            <i class="fas fa-shield-halved"></i>
+        </div>
+        <h4>Secure by Design</h4>
+        <p>Security, reliability, and data protection are integrated into every solution we deliver.</p>
+    </div>
+
+</div>
+<!-- CEO Message-->
+<section class="section">
+  <div class="container">
+    <div class="ceo-section reveal">
+
+      <div class="ceo-image-col">
+        <div class="ceo-img-wrapper">
+          <img src="{% static 'images/CEO.png' %}" alt="CEO Of Jamarik Technologies" class="ceo-img">
+          <!-- Floating accent badge -->
+          <div class="ceo-badge">
+            <div class="ceo-badge-icon">🇸🇸</div>
+            <div>
+              <div class="ceo-badge-name">Founder & CEO</div>
+              <div class="ceo-badge-company">Jamarik Technologies Ltd</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stat pills under image -->
+        <div class="ceo-img-stats">
+          <div class="ceo-img-stat">
+            <div class="ceo-img-stat-value">15+</div>
+            <div class="ceo-img-stat-label">Projects</div>
+          </div>
+          <div class="ceo-img-stat">
+            <div class="ceo-img-stat-value">3</div>
+            <div class="ceo-img-stat-label">Countries</div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="ceo-message-col">
+        <div class="tag">A Message from Our CEO</div>
+        <h2>A Vision Rooted in <span class="gradient-text">African Excellence</span></h2>
+
+        <div class="ceo-quote-mark">"</div>
+
+        <p class="ceo-message-text">
+          When I founded Jamarik Technologies, I wasn't just starting a company I was making a statement. A statement that South Sudan, East Africa and the entire continent has the talent, the drive and the intellect to build world-class technology from within.
+        </p>
+        <p class="ceo-message-text">
+          For too long, African nations have been consumers of technology built elsewhere, designed for contexts that don't match our realities. At Jamarik, we flip that narrative. Every system we architect is built with African infrastructure constraints in mind intermittent power, limited bandwidth, mobile-first users, and multilingual communities.
+        </p>
+        <p class="ceo-message-text">
+          We are not chasing the Silicon Valley playbook. We are writing our own one that centres local knowledge, community impact and sustainable innovation. Our AI models are trained on African data. Our apps work offline. Our team is from here.
+        </p>
+        <p class="ceo-message-text">
+          If you are a business an NGO or a government agency that believes technology should work <em>for</em> your people we are ready to build that future together.
+        </p>
+
+        <div class="ceo-signature">
+          <div class="ceo-sig-name">Jamarik Sabahker</div>
+          <div class="ceo-sig-title">Founder & CEO, Jamarik Technologies Ltd</div>
+          <div class="ceo-sig-social">
+           <a href="https://linkedin.com/in/majak-sabahker-chol-272b1631b/" class="social-link" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://twitter.com/@MajakSabahker" class="social-link" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-x-twitter"></i>
+        </a>
+        <a href="https://github.com/majaksabahker" class="social-link" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i>
+        </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!--Team Members-->
+<section class="section section--dark">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">The Team</div>
+      <h2>The People Behind <span class="gradient-text">Jamarik Technologies Ltd</span></h2>
+      <p>A small, high-impact team of engineers, designers and strategists committed to building Africa's digital future.</p>
+    </div>
+
+    {% if team %}
+      <div class="team-grid">
+        {% for member in team %}
+        <div class="team-card reveal">
+          <div class="team-avatar">
+            {% if member.image %}
+              <img src="{{ member.image.url }}" alt="{{ member.name }}">
+            {% else %}
+              {{ member.name|first }}
+            {% endif %}
+          </div>
+          <div class="team-name">{{ member.name }}</div>
+          <div class="team-role">{{ member.role }}</div>
+          <p class="team-bio">{{ member.bio|truncatewords:25 }}</p>
+          <div class="social-links">
+            {% if member.linkedin_url %}<a href="{{ member.linkedin_url }}" class="social-link" aria-label="LinkedIn">💼</a>{% endif %}
+            {% if member.github_url %}<a href="{{ member.github_url }}" class="social-link" aria-label="GitHub">💻</a>{% endif %}
+            {% if member.twitter_url %}<a href="{{ member.twitter_url }}" class="social-link" aria-label="Twitter">🐦</a>{% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+    {% else %}
+      <!-- Default team cards when database is empty -->
+      <div class="team-grid">
+
+        <div class="team-card reveal">
+          <div class="team-avatar team-avatar--photo">
+            <img src="{% static 'images/CEO.png' %}" alt="CEO">
+          </div>
+          <div class="team-name">Jamarik Sabahker</div>
+          <div class="team-role">Founder & CEO</div>
+          <p class="team-bio">South Sudanese entrepreneur and AI engineer. Founded Jamarik Technologies to bring intelligent systems to underserved East African markets.</p>
+          <div class="social-links">
+            <a href="https://linkedin.com/in/majak-sabahker-chol-272b1631b/" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://twitter.com/@MajakSabahker" class="social-link" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i>
+            </a>
+            <a href="https://github.com/majaksabahker" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-avatar team-avatar--photo">
+            <img
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&q=80&auto=format&fit=crop&crop=face"
+              alt="Lead Engineer"
+            >
+          </div>
+          <div class="team-name">Amara Deng</div>
+          <div class="team-role">Lead Software Engineer</div>
+          <p class="team-bio">Full-stack engineer with 8 years of experience in Django, React and Flutter. Architect of MediCore HMS and FloodWatch SS.</p>
+          <div class="social-links">
+            <a href="https://linkedin.com/in/jamarik" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://twitter.com/jamariktech" class="social-link" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+            <a href="https://github.com/jamarik" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-avatar team-avatar--photo">
+            <img
+              src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=300&q=80&auto=format&fit=crop&crop=face"
+              alt="AI Research Lead"
+            >
+          </div>
+          <div class="team-name">Grace Akello</div>
+          <div class="team-role">AI Research Lead</div>
+          <p class="team-bio">Machine learning specialist focused on NLP for African languages and computer vision for low-resource environments. MSc in AI, Makerere University.</p>
+          <div class="social-links">
+            <a href="https://linkedin.com/in/jamarik" class="social-link" aria-label="LinkedIn" target="_blank"rel="noopener noreferrer">
+                <i class="fab fa-linkedin"></i>
+            </a>
+
+  <a href="https://twitter.com/jamariktech"
+     class="social-link"
+     aria-label="X (Twitter)"
+     target="_blank"
+     rel="noopener noreferrer">
+    <i class="fab fa-x-twitter"></i>
+  </a>
+
+  <a href="https://github.com/jamarik"
+     class="social-link"
+     aria-label="GitHub"
+     target="_blank"
+     rel="noopener noreferrer">
+    <i class="fab fa-github"></i>
+  </a>
+
+</div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-avatar team-avatar--photo">
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80&auto=format&fit=crop&crop=face"
+              alt="Product Designer"
+            >
+          </div>
+          <div class="team-name">David Ochieng</div>
+          <div class="team-role">Head of Product & Design</div>
+          <p class="team-bio">UX designer and product strategist with a passion for inclusive design. Ensures every Jamarik product is intuitive for first-time smartphone users.</p>
+          <div class="social-links">
+
+  <a href="https://linkedin.com/in/jamarik"
+     class="social-link"
+     aria-label="LinkedIn"
+     target="_blank"
+     rel="noopener noreferrer">
+    <i class="fab fa-linkedin"></i>
+  </a>
+
+  <a href="https://twitter.com/jamariktech"
+     class="social-link"
+     aria-label="X (Twitter)"
+     target="_blank"
+     rel="noopener noreferrer">
+    <i class="fab fa-x-twitter"></i>
+  </a>
+
+  <a href="https://github.com/jamarik"
+     class="social-link"
+     aria-label="GitHub"
+     target="_blank"
+     rel="noopener noreferrer">
+    <i class="fab fa-github"></i>
+  </a>
+
+</div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-avatar team-avatar--photo">
+            <img
+              src="https://images.unsplash.com/photo-1494790108755-2616b612b977?w=300&q=80&auto=format&fit=crop&crop=face"
+              alt="Business Development"
+            >
+          </div>
+          <div class="team-name">Fatima Al-Rashid</div>
+          <div class="team-role">Head of Business Development</div>
+          <p class="team-bio">Former NGO program manager turned tech partnerships lead. Bridges the gap between Jamarik's engineering capability and client needs across the region.</p>
+          <div class="social-links">
+
+  <a href="https://linkedin.com/in/jamarik"
+     class="social-link"
+     aria-label="LinkedIn"
+     target="_blank"
+     rel="noopener noreferrer">
+    <i class="fab fa-linkedin"></i>
+  </a>
+
+  <a href="https://twitter.com/jamariktech"
+     class="social-link"
+     aria-label="X (Twitter)"
+     target="_blank"
+     rel="noopener noreferrer">
+    <i class="fab fa-x-twitter"></i>
+  </a>
+
+  <a href="https://github.com/jamarik"
+     class="social-link"
+     aria-label="GitHub"
+     target="_blank"
+     rel="noopener noreferrer">
+    <i class="fab fa-github"></i>
+  </a>
+
+</div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-avatar team-avatar--photo">
+            <img
+              src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&q=80&auto=format&fit=crop&crop=face"
+              alt="DevOps Engineer"
+            >
+          </div>
+          <div class="team-name">Samuel Nkosi</div>
+          <div class="team-role">Cloud & DevOps Engineer</div>
+          <p class="team-bio">Infrastructure engineer specialising in Railway, AWSS and edge deployments. Keeps Jamarik's systems at 99.9% uptime across Uganda and South Sudan.</p>
+          <div class="social-links">
+
+  <a href="https://linkedin.com/in/jamarik"
+     class="social-link"
+     aria-label="LinkedIn"
+     target="_blank"
+     rel="noopener noreferrer">
+    <i class="fab fa-linkedin"></i>
+  </a>
+
+  <a href="https://twitter.com/jamariktech"
+     class="social-link"
+     aria-label="X (Twitter)"
+     target="_blank"
+     rel="noopener noreferrer">
+    <i class="fab fa-x-twitter"></i>
+  </a>
+
+  <a href="https://github.com/jamarik"
+     class="social-link"
+     aria-label="GitHub"
+     target="_blank"
+     rel="noopener noreferrer">
+    <i class="fab fa-github"></i>
+  </a>
+
+</div>
+        </div>
+
+      </div>
+    {% endif %}
+
+    <div style="text-align:center;margin-top:48px;">
+      <a href="{% url 'careers' %}" class="btn btn-outline reveal">Join Our Team →</a>
+    </div>
+
+  </div>
+</section>
+
+<!--CTA-->
+<section class="cta-section section--dark">
+  <div class="container">
+    <h2 class="reveal">Want to <span class="gradient-text">Work With Us?</span></h2>
+    <p class="reveal">We're always looking for talented engineers, designers and strategists who believe in building Africa's future.</p>
+    <div class="cta-actions reveal">
+      <a href="{% url 'careers' %}" class="btn btn-primary">View Open Roles →</a>
+      <a href="{% url 'contact' %}" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
